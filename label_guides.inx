@@ -10,8 +10,15 @@
     <_item value="in">inch</_item>
   </param>
   <param name="preset_tab" type="notebook">
+      <page name="rect" _gui-text="Preset (Square Rect.)">
+        <param name="rect_preset" type="enum" _gui-text="Label preset:">
+          <_item value="A5267">Avery 5267</_item>
+        </param>
+      </page>
+  <!--
     <page name="rrect" _gui-text="Preset (Rounded Rect.)">
       <param name="rrect_preset" type="enum" appearance="minimal" _gui-text="Label preset:">
+        <_item value="A5267">BLUBBERCUNT</_item>
         <_item value="L7167">199.6 x 289.1mm Labels (1/sheet, A4) [L7167, LP1/199]</_item>
         <_item value="L7168">199.6 x 143.5mm Labels (2/sheet, A4) [L7168, LP2/199]</_item>
         <_item value="L7169">99.1 x 139mm Labels (4/sheet, A4) [L7169, LP4/99]</_item>
@@ -123,6 +130,7 @@
         <_item value="LP65_35OV">35.05 x 16mm Labels (65/sheet, A4) [LP65/35OV]</_item>
       </param>
     </page>
+    -->
     <page name="custom" _gui-text="Custom">
       <param name="custom_hdr" type="description" appearance="header">Custom Label Options</param>
       <param name="margin_l"    type="float" min="0" max="1000" _gui-text="Left margin">8.5</param>

@@ -29,6 +29,9 @@ GUIDE_COLOURS = {
         'centre': '#A00000',
         'inset': '#0000A0'
 }
+'''
+prolapse
+'''
 
 # Preset list
 # Regular grids defined as:
@@ -36,6 +39,7 @@ GUIDE_COLOURS = {
 #       X pitch, Y pitch, Number across, Number down, shapes
 PRESETS = {
     # Rounded rectangular labels in grid layout
+    'A5267':        ['reg', 'in', 'letter', 0.25, 0.5, 1.75, 0.5, 2, 0.5, 4, 20, 'rrect'],
     'L7167':        ['reg', 'mm', 'a4', 5.2, 3.95, 199.6, 289.1, 199.6, 289.1, 1, 1, 'rrect'],
     'L7168':        ['reg', 'mm', 'a4', 5.2, 5, 199.6, 143.5, 199.6, 143.5, 1, 2, 'rrect'],
     'L7169':        ['reg', 'mm', 'a4', 4.65, 9.5, 99.1, 139, 101.6, 139, 2, 2, 'rrect'],
@@ -143,7 +147,15 @@ PRESETS = {
     'LP35_37SQ':    ['reg', 'mm', 'a4', 8.5 / 12, 13.3, 37, 37, 39, 38.9, 5, 7, 'rrect'],
     'LP70_25SQ':    ['reg', 'mm', 'a4', 11.5, 14.5, 25, 25, 27, 27, 7, 10, 'rrect'],
 }
+# Preset list
+# Regular grids defined as:
+#       'reg', unit, page_szie, l marg, t marg, X size, Y size,
+#       X pitch, Y pitch, Number across, Number down, shapes
 
+PRESETS = {
+    # Rounded rectangular labels in grid layout
+    'A5267':        ['reg', 'in', 'letter', 0.3, 0.5, 1.75, 0.5, (1.75+0.3), 0.5, 4, 20, 'rect']
+}
 
 def add_SVG_guide(x, y, orientation, colour, parent):
     """ Create a sodipodi:guide node on the given parent
@@ -400,7 +412,9 @@ class LabelGuides(inkex.Effect):
             return size
         elif size == "a4":
             return [210, 297]
-
+        elif size == "letter":
+            # return [215.9, 279.4]
+            return [8.5, 11]
         # Failed to find a useful size, None will inhibit setting the size
         return None
 
