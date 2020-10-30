@@ -215,7 +215,8 @@ def draw_SVG_ellipse(rx, ry, cx, cy, style, parent, xi, yi):
         inkex.addNS('rx', 'sodipodi'):   str(rx),
         inkex.addNS('ry', 'sodipodi'):   str(ry),
         inkex.addNS('type', 'sodipodi'): 'arc',
-        'id':       f"x{xi}y{yi}"
+        'id':       f"x{xi}y{yi}",
+        'class':    f"x{xi} y{yi}"
     }
 
     inkex.etree.SubElement(parent, inkex.addNS('path', 'svg'), attribs)
@@ -229,7 +230,8 @@ def draw_SVG_rect(x, y, w, h, round, style, parent, xi, yi):
         'width':    str(w),
         'x':        str(x),
         'y':        str(y),
-        'id':       f"x{xi}y{yi}"
+        'id':       f"x{xi}y{yi}",
+        'class':    f"x{xi} y{yi}"
     }
 
     if round:
