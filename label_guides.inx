@@ -13,6 +13,8 @@
       <page name="rect" _gui-text="Preset (Square Rect.)">
         <param name="rect_preset" type="enum" _gui-text="Label preset:">
           <_item value="A5267">Avery 5267</_item>
+          <_item value="A5366">Avery 5366</_item>
+          <_item value="A5160">Avery 5160</_item>
         </param>
       </page>
   <!--

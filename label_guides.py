@@ -152,9 +152,17 @@ PRESETS = {
 #       'reg', unit, page_szie, l marg, t marg, X size, Y size,
 #       X pitch, Y pitch, Number across, Number down, shapes
 
+
+a5366w = 3 + (7/16)
+a5366lm = (8.5 - (a5366w * 2)) / 3
+a5160w = 2 + (5/8)
+a5160lm = (8.5 - (a5160w * 3)) / 4
+
 PRESETS = {
     # Rounded rectangular labels in grid layout
-    'A5267':        ['reg', 'in', 'letter', 0.3, 0.5, 1.75, 0.5, (1.75+0.3), 0.5, 4, 20, 'rect']
+    'A5267':        ['reg', 'in', 'letter', 0.3, 0.5, 1.75, 0.5, (1.75+0.3), 0.5, 4, 20, 'rect'],
+    'A5366':        ['reg', 'in', 'letter', a5366lm, 0.5, a5366w, (2/3), a5366w + a5366lm, (2/3), 2, 15, 'rect'],
+    'A5160':        ['reg', 'in', 'letter', a5160lm, 0.5, a5160w, 1, a5160w + a5160lm, 1, 3, 10, 'rect']
 }
 
 def add_SVG_guide(x, y, orientation, colour, parent):
@@ -212,14 +220,15 @@ def draw_SVG_ellipse(rx, ry, cx, cy, style, parent):
     inkex.etree.SubElement(parent, inkex.addNS('path', 'svg'), attribs)
 
 
-def draw_SVG_rect(x, y, w, h, round, style, parent):
+def draw_SVG_rect(x, y, w, h, round, style, parent, xi, yi):
 
     attribs = {
         'style':    simplestyle.formatStyle(style),
         'height':   str(h),
         'width':    str(w),
         'x':        str(x),
-        'y':        str(y)
+        'y':        str(y),
+        'id':       f"x{xi}y{yi}"
     }
 
     if round:
@@ -637,7 +646,7 @@ class LabelGuides(inkex.Effect):
                     rnd = self._to_uu(label_opts['corner_rad'],
                                       label_opts['units'])
 
-                    draw_SVG_rect(x, height - y, w, h, rnd, style, shapeLayer)
+                    draw_SVG_rect(x, height - y, w, h, rnd, style, shapeLayer, xi, yi)
 
     def _set_page_size(self, document, label_opts):
         """
