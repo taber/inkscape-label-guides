@@ -245,6 +245,15 @@ class LabelGuides(inkex.Effect):
 
         inkex.Effect.__init__(self)
 
+        '''
+        self.arg_parser.add_argument(
+            '--units',
+            action='store', type='string',
+            dest='units', default='mm',
+            help="The units to use for custom label sizing"
+        )
+        '''
+
         self.OptionParser.add_option(
             '--units',
             action='store', type='string',
