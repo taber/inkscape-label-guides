@@ -206,7 +206,7 @@ def delete_all_guides(document):
         nv.remove(element)
 
 
-def draw_SVG_ellipse(rx, ry, cx, cy, style, parent):
+def draw_SVG_ellipse(rx, ry, cx, cy, style, parent, xi, yi):
 
     attribs = {
         'style': simplestyle.formatStyle(style),
@@ -215,6 +215,7 @@ def draw_SVG_ellipse(rx, ry, cx, cy, style, parent):
         inkex.addNS('rx', 'sodipodi'):   str(rx),
         inkex.addNS('ry', 'sodipodi'):   str(ry),
         inkex.addNS('type', 'sodipodi'): 'arc',
+        'id':       f"x{xi}y{yi}"
     }
 
     inkex.etree.SubElement(parent, inkex.addNS('path', 'svg'), attribs)
@@ -624,7 +625,7 @@ class LabelGuides(inkex.Effect):
         for xi in range(0, len(guides['v']), 2):
 
             for yi in range(0, len(guides['h']), 2):
-
+                
                 if shape == 'circle':
                     cx = (guides['v'][xi] + guides['v'][xi + 1]) / 2
                     cy = (guides['h'][yi] + guides['h'][yi + 1]) / 2
@@ -632,8 +633,7 @@ class LabelGuides(inkex.Effect):
                     rx = cx - guides['v'][xi] - inset
                     ry = guides['h'][yi] - cy - inset
 
-                    draw_SVG_ellipse(rx, ry, cx, height - cy, style,
-                                     shapeLayer)
+                    draw_SVG_ellipse(rx, ry, cx, height - cy, style, shapeLayer, xi, yi)
 
                 elif shape in ["rect", "rrect"]:
 
