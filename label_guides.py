@@ -534,6 +534,7 @@ class LabelGuides(inkex.Effect):
         height = self.svg.unittouu(self.svg.height)
 
         # draw shapes between every set of two guides
+
         for xi in range(0, len(guides['v']), 2):
 
             for yi in range(0, len(guides['h']), 2):
